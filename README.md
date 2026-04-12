@@ -56,7 +56,7 @@ I will be your wise leader, and you shall be my fearsome minion!
 
 | Agent | Install |
 |-------|---------|
-| **Claude Code** | `claude plugin marketplace add cashcon57/caveman-claptrap && claude plugin install caveman-claptrap@caveman` |
+| **Claude Code** | `claude plugin marketplace add cashcon57/caveman-claptrap && claude plugin install caveman-claptrap@caveman-claptrap` |
 | **Cursor** | `npx skills add cashcon57/caveman-claptrap -a cursor` |
 | **Windsurf** | `npx skills add cashcon57/caveman-claptrap -a windsurf` |
 | **Cline** | `npx skills add cashcon57/caveman-claptrap -a cline` |

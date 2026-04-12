@@ -1,15 +1,15 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "caveman",
-  "description": "Ultra-compressed communication mode for Claude Code. Cuts ~75% of tokens while keeping full technical accuracy.",
+  "name": "caveman-claptrap",
+  "description": "Caveman token compression + Claptrap (Borderlands) personality. Same ~75% token savings, more annoying.",
   "owner": {
-    "name": "Julius Brussee",
-    "url": "https://github.com/JuliusBrussee"
+    "name": "Cash Conway",
+    "url": "https://github.com/cashcon57"
   },
   "plugins": [
     {
-      "name": "caveman",
-      "description": "Talk like caveman. Cut ~75% tokens. Keep all technical accuracy.",
+      "name": "caveman-claptrap",
+      "description": "Talk like caveman Claptrap. Cut ~75% tokens. Add emotional instability.",
       "source": "./",
       "category": "productivity"
     }

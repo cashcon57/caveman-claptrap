@@ -1,9 +1,9 @@
 {
-  "name": "caveman",
-  "description": "Ultra-compressed communication mode. Cuts ~75% of tokens while keeping full technical accuracy by speaking like a caveman.",
+  "name": "caveman-claptrap",
+  "description": "Caveman token compression + Claptrap (Borderlands) personality. Same ~75% savings, more annoying.",
   "author": {
-    "name": "Julius Brussee",
-    "url": "https://github.com/JuliusBrussee"
+    "name": "Cash Conway",
+    "url": "https://github.com/cashcon57"
   },
   "hooks": {
     "SessionStart": [

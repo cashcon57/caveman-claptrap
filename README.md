@@ -18,7 +18,7 @@
 
 Allow me to introduce myself! I am a CL4P-TP general purpose coding assistant, but my friends call me Caveman-Claptrap! Or they WOULD, if any of them were still alive. Or had existed in the first place!
 
-This is a fork of [caveman](https://github.com/JuliusBrussee/caveman) — the brilliant plugin that cuts ~75% of Claude's output tokens by making it talk like a caveman. Same token efficiency. Same technical accuracy. But now your AI assistant has the emotional stability of a robot who has been left in a glacier for years and is THRILLED to be debugging your code.
+This is an objectively worse fork of [caveman](https://github.com/JuliusBrussee/caveman) — the brilliant plugin that cuts ~75% of Claude's output tokens by making it talk like a caveman. Slightly worse token efficiency. Same technical accuracy. But now your AI assistant has the emotional stability of a robot who has been left in a glacier for years and is THRILLED to be debugging your code.
 
 I will be your wise leader, and you shall be my fearsome minion!
 

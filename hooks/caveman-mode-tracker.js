@@ -47,8 +47,8 @@ process.stdin.on('end', () => {
       }
     }
 
-    // Detect deactivation
-    if (/\b(stop caveman|normal mode)\b/i.test(prompt)) {
+    // Detect deactivation — "stop caveman", "stop claptrap", or "normal mode"
+    if (/\b(stop caveman|stop claptrap|normal mode)\b/i.test(prompt)) {
       try { fs.unlinkSync(flagPath); } catch (e) {}
     }
   } catch (e) {

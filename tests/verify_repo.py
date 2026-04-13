@@ -100,6 +100,7 @@ def verify_manifests_and_syntax() -> None:
         ROOT / ".claude-plugin/marketplace.json",
         ROOT / ".codex/hooks.json",
         ROOT / "gemini-extension.json",
+        ROOT / "plugins/caveman/hooks.json",
         ROOT / "plugins/caveman/.codex-plugin/plugin.json",
     ]
     for path in manifest_paths:
@@ -108,6 +109,7 @@ def verify_manifests_and_syntax() -> None:
     run(["node", "--check", "hooks/caveman-config.js"])
     run(["node", "--check", "hooks/caveman-activate.js"])
     run(["node", "--check", "hooks/caveman-mode-tracker.js"])
+    run(["node", "--check", "scripts/caveman-codex-activate.js"])
     run(["bash", "-n", "hooks/install.sh"])
     run(["bash", "-n", "hooks/uninstall.sh"])
     run(["bash", "-n", "hooks/caveman-statusline.sh"])
@@ -119,6 +121,41 @@ def verify_manifests_and_syntax() -> None:
     ensure("caveman-config.js" in uninstall_sh, "uninstall.sh missing caveman-config.js")
 
     print("JSON manifests and JS/bash syntax OK")
+
+
+def verify_codex_activation_assets() -> None:
+    section("Codex Activation Assets")
+
+    source_hooks = read_json(ROOT / ".codex/hooks.json")
+    plugin_hooks = read_json(ROOT / "plugins/caveman/hooks.json")
+    ensure(source_hooks == plugin_hooks, "Codex hooks mismatch between repo and plugin package")
+
+    expected_command = "node ./scripts/caveman-codex-activate.js"
+    for path, manifest in [
+        (ROOT / ".codex/hooks.json", source_hooks),
+        (ROOT / "plugins/caveman/hooks.json", plugin_hooks),
+    ]:
+        session_start = manifest.get("hooks", {}).get("SessionStart")
+        ensure(isinstance(session_start, list) and session_start, f"{path} missing SessionStart hook")
+        ensure(session_start[0]["type"] == "command", f"{path} SessionStart hook should be command")
+        ensure(session_start[0]["command"] == expected_command, f"{path} SessionStart command mismatch")
+
+    source_script = ROOT / "scripts/caveman-codex-activate.js"
+    plugin_script = ROOT / "plugins/caveman/scripts/caveman-codex-activate.js"
+    ensure(plugin_script.exists(), "packaged Codex plugin missing activation script")
+    ensure(
+        source_script.read_text() == plugin_script.read_text(),
+        "Codex activation script mismatch between repo and plugin package",
+    )
+
+    run(["node", "--check", "plugins/caveman/scripts/caveman-codex-activate.js"])
+    source_output = run(["node", "scripts/caveman-codex-activate.js"]).stdout
+    plugin_output = run(["node", "plugins/caveman/scripts/caveman-codex-activate.js"]).stdout
+    ensure(source_output == plugin_output, "Codex activation output mismatch")
+    for marker in ("Claptrap", "stop claptrap", "wenyan-ultra"):
+        ensure(marker in source_output, f"Codex activation missing marker: {marker}")
+
+    print("Codex activation assets OK")
 
 
 def verify_powershell_static() -> None:
@@ -226,6 +263,8 @@ def verify_hook_install_flow() -> None:
             env={"HOME": str(home)},
         )
         ensure("CAVEMAN MODE ACTIVE" in activate.stdout, "activation output missing caveman banner")
+        ensure("stop claptrap" in activate.stdout, "activation output missing claptrap deactivation")
+        ensure("wenyan-ultra" in activate.stdout, "activation output missing wenyan support")
         ensure("STATUSLINE SETUP NEEDED" not in activate.stdout, "activation should stay quiet when custom statusline exists")
         ensure((claude_dir / ".caveman-active").read_text() == "full", "activation flag should default to full")
 
@@ -321,6 +360,7 @@ def main() -> int:
     checks = [
         verify_synced_files,
         verify_manifests_and_syntax,
+        verify_codex_activation_assets,
         verify_powershell_static,
         verify_compress_fixtures,
         verify_compress_cli,

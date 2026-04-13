@@ -6,6 +6,8 @@ on:
     paths:
       - skills/caveman/SKILL.md
       - rules/caveman-activate.md
+      - .codex/hooks.json
+      - scripts/caveman-codex-activate.js
       - caveman-compress/SKILL.md
       - caveman-compress/scripts/**
 
@@ -36,6 +38,12 @@ jobs:
           cp skills/caveman/SKILL.md .cursor/skills/caveman/SKILL.md
           mkdir -p .windsurf/skills/caveman
           cp skills/caveman/SKILL.md .windsurf/skills/caveman/SKILL.md
+
+      - name: Sync Codex activation assets
+        run: |
+          mkdir -p plugins/caveman/scripts
+          cp .codex/hooks.json plugins/caveman/hooks.json
+          cp scripts/caveman-codex-activate.js plugins/caveman/scripts/caveman-codex-activate.js
 
       - name: Sync compress skill to plugin
         run: |
@@ -76,6 +84,8 @@ jobs:
           git add \
             caveman/SKILL.md \
             plugins/caveman/skills/compress/ \
+            plugins/caveman/hooks.json \
+            plugins/caveman/scripts/caveman-codex-activate.js \
             plugins/caveman/skills/caveman/SKILL.md \
             .cursor/skills/caveman/SKILL.md \
             .windsurf/skills/caveman/SKILL.md \

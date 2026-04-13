@@ -154,7 +154,41 @@ class HookScriptTests(unittest.TestCase):
             result = self.run_cmd(["node", "hooks/caveman-activate.js"], home)
 
             self.assertNotIn("STATUSLINE SETUP NEEDED", result.stdout)
+            self.assertIn("stop claptrap", result.stdout)
+            self.assertIn("wenyan-ultra", result.stdout)
             self.assertEqual((claude_dir / ".caveman-active").read_text(), "full")
+
+    def test_mode_tracker_records_wenyan_modes(self):
+        with tempfile.TemporaryDirectory(prefix="caveman-hooks-wenyan-") as tmp:
+            home = Path(tmp)
+            claude_dir = home / ".claude"
+            claude_dir.mkdir(parents=True)
+
+            env = os.environ.copy()
+            env["HOME"] = str(home)
+            env["USERPROFILE"] = str(home)
+
+            subprocess.run(
+                ["node", "hooks/caveman-mode-tracker.js"],
+                cwd=REPO_ROOT,
+                env=env,
+                text=True,
+                input='{"prompt":"/caveman wenyan"}',
+                capture_output=True,
+                check=True,
+            )
+            self.assertEqual((claude_dir / ".caveman-active").read_text(), "wenyan")
+
+            subprocess.run(
+                ["node", "hooks/caveman-mode-tracker.js"],
+                cwd=REPO_ROOT,
+                env=env,
+                text=True,
+                input='{"prompt":"/caveman wenyan-ultra"}',
+                capture_output=True,
+                check=True,
+            )
+            self.assertEqual((claude_dir / ".caveman-active").read_text(), "wenyan-ultra")
 
 
 if __name__ == "__main__":

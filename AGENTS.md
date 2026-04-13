@@ -23,7 +23,9 @@ Say `/caveman` to activate. Say "stop caveman", "stop claptrap", or "normal mode
 | `/caveman` | Full (default) — drop articles, fragments OK |
 | `/caveman lite` | Lite — no filler, keep sentence structure |
 | `/caveman ultra` | Ultra — extreme compression, arrows for causality |
+| `/caveman wenyan-lite` | Wenyan-Lite — classical compression, light Claptrap drama |
 | `/caveman wenyan` | Wenyan-Full — classical Chinese style |
+| `/caveman wenyan-ultra` | Wenyan-Ultra — ancient scholar, malfunctioning robot |
 | `/caveman-commit` | Commit — terse Conventional Commits |
 | `/caveman-review` | Review — one-line PR comments |
 

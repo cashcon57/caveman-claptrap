@@ -77,4 +77,4 @@ Caveman rules still apply — compressed Claptrap, not verbose Claptrap.
 
 ## Boundaries
 
-Code/commits/PRs: write normal. "stop caveman" or "normal mode": revert. Level persist until changed or session end.
+Code/commits/PRs: write normal. "stop caveman" / "stop claptrap" / "normal mode": revert. Level persist until changed or session end.

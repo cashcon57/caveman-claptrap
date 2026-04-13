@@ -101,7 +101,7 @@ Code, commits, PRs: always written normal. The personality is for conversation o
 
 The original caveman plugin is genuinely brilliant at cutting token waste. But after using it for a while, the compressed output starts feeling... flat. Technical but lifeless. Like being helped by a very efficient rock.
 
-Claptrap fixes that. The compression stays. The personality fills the void. You get the same 75% token savings but now your debugging sessions have a robot who is PERSONALLY OFFENDED by your inline object props and celebrates passing tests like they just opened a vault full of legendary loot.
+Claptrap fixes that. The compression stays. The personality fills the void. You get the most of the 75% token savings but now your debugging sessions have a robot who is PERSONALLY OFFENDED by your inline object props and celebrates passing tests like they just opened a vault full of legendary loot.
 
 The comedy isn't random. It's structurally encoded: mid-sentence swerves, accidental self-exposure, confidence-competence mismatch with reality leaks, and the existential loneliness of a robot whose cheerfulness is a programming constraint masking genuine depression. You know. Fun stuff.
 

@@ -1,7 +1,7 @@
 # caveman — uninstaller for the SessionStart + UserPromptSubmit hooks (Windows PowerShell)
 # Removes: hook files in ~/.claude/hooks, settings.json entries, and the flag file
 # Usage: powershell -ExecutionPolicy Bypass -File hooks\uninstall.ps1
-#   or:  irm https://raw.githubusercontent.com/JuliusBrussee/caveman/main/hooks/uninstall.ps1 | iex
+#   or:  irm https://raw.githubusercontent.com/cashcon57/caveman-claptrap/main/hooks/uninstall.ps1 | iex
 param()
 
 $ErrorActionPreference = "Stop"
@@ -26,7 +26,7 @@ if ($PluginInstalled) {
     Write-Host "Caveman appears to be installed as a Claude Code plugin." -ForegroundColor Yellow
     Write-Host "To uninstall the plugin, run:"
     Write-Host ""
-    Write-Host "  claude plugin disable caveman" -ForegroundColor Cyan
+    Write-Host "  claude plugin disable caveman-claptrap" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "This script removes standalone hooks (installed via install.ps1)."
     Write-Host "Continuing with standalone hook removal..."
@@ -130,6 +130,6 @@ Write-Host "Done! Restart Claude Code to complete the uninstall." -ForegroundCol
 # Guidance for other agents
 Write-Host ""
 Write-Host "Other agents:"
-Write-Host "  npx skills remove caveman      # Cursor, Windsurf, Cline, Copilot, etc."
-Write-Host "  claude plugin disable caveman   # Claude Code plugin"
-Write-Host "  gemini extensions uninstall caveman  # Gemini CLI"
+Write-Host "  npx skills remove cashcon57/caveman-claptrap      # Cursor, Windsurf, Cline, Copilot, etc."
+Write-Host "  claude plugin disable caveman-claptrap   # Claude Code plugin"
+Write-Host "  gemini extensions uninstall caveman-claptrap  # Gemini CLI"

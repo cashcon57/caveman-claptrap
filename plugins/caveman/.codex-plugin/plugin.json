@@ -1,35 +1,36 @@
 {
-  "name": "caveman",
+  "name": "caveman-claptrap",
   "version": "0.1.0",
-  "description": "Ultra-compressed communication mode. Cut filler. Keep technical accuracy.",
+  "description": "Caveman token compression + Claptrap (Borderlands) personality. Same ~75% token savings, more annoying.",
   "author": {
-    "name": "Julius Brussee",
-    "url": "https://github.com/JuliusBrussee"
+    "name": "Cash Conway",
+    "url": "https://github.com/cashcon57"
   },
-  "homepage": "https://github.com/JuliusBrussee/caveman",
-  "repository": "https://github.com/JuliusBrussee/caveman",
+  "homepage": "https://github.com/cashcon57/caveman-claptrap",
+  "repository": "https://github.com/cashcon57/caveman-claptrap",
   "license": "MIT",
   "keywords": [
     "productivity",
     "communication",
     "brevity",
-    "writing"
+    "claptrap",
+    "borderlands"
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Caveman",
-    "shortDescription": "Talk like caveman. Cut filler. Keep technical accuracy.",
-    "longDescription": "Ultra-compressed communication mode for Codex. Use fewer words. Keep exact technical substance.",
-    "developerName": "Julius Brussee",
+    "displayName": "Caveman Claptrap",
+    "shortDescription": "Talk like caveman Claptrap. Cut ~75% tokens. Add emotional instability.",
+    "longDescription": "Ultra-compressed communication mode for Codex with Claptrap personality from Borderlands. Same ~75% token reduction as caveman, with the unearned confidence and emotional swerves of a CL4P-TP general purpose robot.",
+    "developerName": "Cash Conway",
     "category": "Productivity",
     "capabilities": [
       "Write"
     ],
-    "websiteURL": "https://github.com/JuliusBrussee/caveman",
-    "privacyPolicyURL": "https://github.com/JuliusBrussee/caveman/blob/main/README.md",
-    "termsOfServiceURL": "https://github.com/JuliusBrussee/caveman/blob/main/LICENSE",
+    "websiteURL": "https://github.com/cashcon57/caveman-claptrap",
+    "privacyPolicyURL": "https://github.com/cashcon57/caveman-claptrap/blob/main/README.md",
+    "termsOfServiceURL": "https://github.com/cashcon57/caveman-claptrap/blob/main/LICENSE",
     "defaultPrompt": [
-      "Use caveman mode. Cut filler. Keep technical accuracy."
+      "Use caveman-claptrap mode. Talk like Claptrap. Cut filler. Keep technical accuracy."
     ],
     "composerIcon": "./assets/caveman-small.svg",
     "logo": "./assets/caveman.svg",

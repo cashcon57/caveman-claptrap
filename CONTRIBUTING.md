@@ -1,6 +1,6 @@
 # Contributing
 
-Improvements to the SKILL.md prompt are welcome — open a PR with before/after examples showing the change.
+This is a fork of [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) with Claptrap personality added. Improvements to the Claptrap persona or caveman compression are both welcome — open a PR with before/after examples showing the change.
 
 ## How
 

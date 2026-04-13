@@ -1,11 +1,11 @@
 {
-  "name": "caveman-repo",
+  "name": "caveman-claptrap-repo",
   "interface": {
-    "displayName": "Caveman Repo"
+    "displayName": "Caveman Claptrap Repo"
   },
   "plugins": [
     {
-      "name": "caveman",
+      "name": "caveman-claptrap",
       "source": {
         "source": "local",
         "path": "./plugins/caveman"

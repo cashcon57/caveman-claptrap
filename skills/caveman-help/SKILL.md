@@ -34,7 +34,7 @@ Mode stick until changed or session end.
 
 ## Deactivate
 
-Say "stop caveman" or "normal mode". Resume anytime with `/caveman`.
+Say "stop caveman", "stop claptrap", or "normal mode". Resume anytime with `/caveman`.
 
 ## Configure Default Mode
 
@@ -56,4 +56,4 @@ Resolution: env var > config file > `full`.
 
 ## More
 
-Full docs: https://github.com/JuliusBrussee/caveman
+Full docs: https://github.com/cashcon57/caveman-claptrap

@@ -2,7 +2,7 @@
 # caveman — uninstaller for the SessionStart + UserPromptSubmit hooks
 # Removes: hook files in ~/.claude/hooks, settings.json entries, and the flag file
 # Usage: bash hooks/uninstall.sh
-#   or:  bash <(curl -s https://raw.githubusercontent.com/JuliusBrussee/caveman/main/hooks/uninstall.sh)
+#   or:  bash <(curl -s https://raw.githubusercontent.com/cashcon57/caveman-claptrap/main/hooks/uninstall.sh)
 set -e
 
 CLAUDE_DIR="$HOME/.claude"
@@ -24,7 +24,7 @@ if [ "$PLUGIN_INSTALLED" -eq 1 ]; then
   echo "Caveman appears to be installed as a Claude Code plugin."
   echo "To uninstall the plugin, run:"
   echo ""
-  echo "  claude plugin disable caveman"
+  echo "  claude plugin disable caveman-claptrap"
   echo ""
   echo "This script removes standalone hooks (installed via install.sh)."
   echo "Continuing with standalone hook removal..."
@@ -125,6 +125,6 @@ echo "Done! Restart Claude Code to complete the uninstall."
 # Guidance for other agents
 echo ""
 echo "Other agents:"
-echo "  npx skills remove caveman    # Cursor, Windsurf, Cline, Copilot, etc."
-echo "  claude plugin disable caveman  # Claude Code plugin"
-echo "  gemini extensions uninstall caveman  # Gemini CLI"
+echo "  npx skills remove cashcon57/caveman-claptrap    # Cursor, Windsurf, Cline, Copilot, etc."
+echo "  claude plugin disable caveman-claptrap  # Claude Code plugin"
+echo "  gemini extensions uninstall caveman-claptrap  # Gemini CLI"

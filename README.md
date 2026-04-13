@@ -64,6 +64,8 @@ I will be your wise leader, and you shall be my fearsome minion!
 
 Install once. Get annoyed every session after that. You're WELCOME.
 
+Standalone skill installs are namespaced as `caveman-claptrap*`, so this fork can live next to upstream caveman without overwriting its skill folders, command files, or hook assets.
+
 ## What You Actually Get
 
 Everything caveman gives you, PLUS:
@@ -84,7 +86,7 @@ Everything caveman gives you, PLUS:
 | **full** | Fragments, no articles | Full emotional swerves, accidental confessions, CAPS |
 | **ultra** | Maximum abbreviation, arrows | Compressed one-liner reactions. Maximum personality per token |
 
-Switch with `/caveman lite|full|ultra`. Default is **full**.
+Switch with `/claptrap lite|full|ultra`. `/caveman ...` still works as a compatibility alias. Default is **full**.
 
 ## Safety
 
@@ -95,7 +97,7 @@ I drop the act for:
 
 Code, commits, PRs: always written normal. The personality is for conversation only. I would NEVER sabotage committed code. I've lost enough product lines for one lifetime.
 
-"stop caveman" or "stop claptrap" or "normal mode" = instant revert. I'll miss you. I'll throw you a party. Nobody will come. But the POOL will be ready.
+"stop claptrap" or "stop caveman" or "normal mode" = instant revert. I'll miss you. I'll throw you a party. Nobody will come. But the POOL will be ready.
 
 ## Why This Exists
 

@@ -11,9 +11,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/caveman-activate.js",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/caveman-claptrap-activate.js",
             "timeout": 5,
-            "statusMessage": "Loading caveman mode..."
+            "statusMessage": "Loading Claptrap mode..."
           }
         ]
       }
@@ -23,9 +23,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/caveman-mode-tracker.js",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/caveman-claptrap-mode-tracker.js",
             "timeout": 5,
-            "statusMessage": "Tracking caveman mode..."
+            "statusMessage": "Tracking Claptrap mode..."
           }
         ]
       }

@@ -8,7 +8,7 @@
       "name": "caveman-claptrap",
       "source": {
         "source": "local",
-        "path": "./plugins/caveman"
+        "path": "./plugins/caveman-claptrap"
       },
       "policy": {
         "installation": "AVAILABLE",

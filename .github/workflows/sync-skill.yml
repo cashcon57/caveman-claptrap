@@ -4,12 +4,12 @@ on:
   push:
     branches: [main]
     paths:
-      - skills/caveman/SKILL.md
-      - rules/caveman-activate.md
+      - skills/caveman-claptrap/SKILL.md
+      - rules/caveman-claptrap-activate.md
       - .codex/hooks.json
-      - scripts/caveman-codex-activate.js
-      - caveman-compress/SKILL.md
-      - caveman-compress/scripts/**
+      - scripts/caveman-claptrap-codex-activate.js
+      - caveman-claptrap-compress/SKILL.md
+      - caveman-claptrap-compress/scripts/**
 
 concurrency:
   group: sync-skill
@@ -33,67 +33,54 @@ jobs:
 
       - name: Sync SKILL.md copies
         run: |
-          cp skills/caveman/SKILL.md caveman/SKILL.md
-          cp skills/caveman/SKILL.md plugins/caveman/skills/caveman/SKILL.md
-          cp skills/caveman/SKILL.md .cursor/skills/caveman/SKILL.md
-          mkdir -p .windsurf/skills/caveman
-          cp skills/caveman/SKILL.md .windsurf/skills/caveman/SKILL.md
+          cp skills/caveman-claptrap/SKILL.md caveman-claptrap/SKILL.md
+          cp skills/caveman-claptrap/SKILL.md plugins/caveman-claptrap/skills/caveman-claptrap/SKILL.md
+          cp skills/caveman-claptrap/SKILL.md .cursor/skills/caveman-claptrap/SKILL.md
+          mkdir -p .windsurf/skills/caveman-claptrap
+          cp skills/caveman-claptrap/SKILL.md .windsurf/skills/caveman-claptrap/SKILL.md
 
       - name: Sync Codex activation assets
         run: |
-          mkdir -p plugins/caveman/scripts
-          cp .codex/hooks.json plugins/caveman/hooks.json
-          cp scripts/caveman-codex-activate.js plugins/caveman/scripts/caveman-codex-activate.js
+          mkdir -p plugins/caveman-claptrap/scripts
+          cp .codex/hooks.json plugins/caveman-claptrap/hooks.json
+          cp scripts/caveman-claptrap-codex-activate.js plugins/caveman-claptrap/scripts/caveman-claptrap-codex-activate.js
 
       - name: Sync compress skill to plugin
         run: |
-          # Copy SKILL.md and patch name + process instructions for plugin context
-          cp caveman-compress/SKILL.md plugins/caveman/skills/compress/SKILL.md
-          sed -i 's/^name: caveman-compress$/name: compress/' plugins/caveman/skills/compress/SKILL.md
-          sed -i "s|The compression scripts live in \`caveman-compress/scripts/\` (adjacent to this SKILL.md). If the path is not immediately available, search for \`caveman-compress/scripts/__main__.py\`.|This SKILL.md lives alongside \`scripts/\` in the same directory. Find that directory.|" plugins/caveman/skills/compress/SKILL.md
-          sed -i 's|cd caveman-compress && python3|cd <directory_containing_this_SKILL.md> \&\& python3|' plugins/caveman/skills/compress/SKILL.md
+          # Copy SKILL.md and patch process instructions for plugin context
+          cp caveman-claptrap-compress/SKILL.md plugins/caveman-claptrap/skills/caveman-claptrap-compress/SKILL.md
+          sed -i "s|The compression scripts live in \`caveman-claptrap-compress/scripts/\` (adjacent to this SKILL.md). If the path is not immediately available, search for \`caveman-claptrap-compress/scripts/__main__.py\`.|This SKILL.md lives alongside \`scripts/\` in the same directory. Find that directory.|" plugins/caveman-claptrap/skills/caveman-claptrap-compress/SKILL.md
+          sed -i 's|cd caveman-claptrap-compress && python3|cd <directory_containing_this_SKILL.md> \&\& python3|' plugins/caveman-claptrap/skills/caveman-claptrap-compress/SKILL.md
           # Copy scripts verbatim
-          rm -rf plugins/caveman/skills/compress/scripts
-          cp -r caveman-compress/scripts plugins/caveman/skills/compress/scripts
-          rm -rf plugins/caveman/skills/compress/scripts/__pycache__
+          rm -rf plugins/caveman-claptrap/skills/caveman-claptrap-compress/scripts
+          cp -r caveman-claptrap-compress/scripts plugins/caveman-claptrap/skills/caveman-claptrap-compress/scripts
+          rm -rf plugins/caveman-claptrap/skills/caveman-claptrap-compress/scripts/__pycache__
 
-      - name: Rebuild caveman.skill ZIP
-        run: cd skills && zip -r ../caveman.skill caveman/
+      - name: Rebuild caveman-claptrap.skill ZIP
+        run: cd skills && zip -r ../caveman-claptrap.skill caveman-claptrap/
 
       - name: Sync auto-activation rules
         run: |
-          BODY="rules/caveman-activate.md"
+          BODY="rules/caveman-claptrap-activate.md"
 
           # Cline + Copilot — no frontmatter, direct copy
           mkdir -p .clinerules .github
-          cp "$BODY" .clinerules/caveman.md
+          cp "$BODY" .clinerules/caveman-claptrap.md
           cp "$BODY" .github/copilot-instructions.md
 
           # Cursor — needs alwaysApply frontmatter
           mkdir -p .cursor/rules
-          printf '%s\n' '---' 'description: "Caveman mode — terse communication, ~75% fewer tokens, full technical accuracy"' 'alwaysApply: true' '---' '' > .cursor/rules/caveman.mdc
-          cat "$BODY" >> .cursor/rules/caveman.mdc
+          printf '%s\n' '---' 'description: "Claptrap mode — terse communication, ~75% fewer tokens, full technical accuracy"' 'alwaysApply: true' '---' '' > .cursor/rules/caveman-claptrap.mdc
+          cat "$BODY" >> .cursor/rules/caveman-claptrap.mdc
 
           # Windsurf — needs always_on frontmatter
           mkdir -p .windsurf/rules
-          printf '%s\n' '---' 'trigger: always_on' '---' '' > .windsurf/rules/caveman.md
-          cat "$BODY" >> .windsurf/rules/caveman.md
+          printf '%s\n' '---' 'trigger: always_on' '---' '' > .windsurf/rules/caveman-claptrap.md
+          cat "$BODY" >> .windsurf/rules/caveman-claptrap.md
 
       - name: Commit and push if changed
         run: |
-          git add \
-            caveman/SKILL.md \
-            plugins/caveman/skills/compress/ \
-            plugins/caveman/hooks.json \
-            plugins/caveman/scripts/caveman-codex-activate.js \
-            plugins/caveman/skills/caveman/SKILL.md \
-            .cursor/skills/caveman/SKILL.md \
-            .windsurf/skills/caveman/SKILL.md \
-            caveman.skill \
-            .clinerules/caveman.md \
-            .github/copilot-instructions.md \
-            .cursor/rules/caveman.mdc \
-            .windsurf/rules/caveman.md
+          git add -A
           git diff --staged --quiet && exit 0
           git commit -m "chore: sync SKILL.md copies and auto-activation rules [skip ci]"
           git push

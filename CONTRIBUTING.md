@@ -5,13 +5,15 @@ This is a fork of [JuliusBrussee/caveman](https://github.com/JuliusBrussee/cavem
 ## How
 
 1. Fork repo
-2. Edit `skills/caveman/SKILL.md` — this is the only copy you need to touch
+2. Edit `skills/caveman-claptrap/SKILL.md` — this is the only copy you need to touch
 3. Open PR with:
    - **Before:** what caveman say now
    - **After:** what caveman say with change
    - One sentence why change better
 
-> **Note:** `caveman/SKILL.md`, `plugins/caveman/skills/caveman/SKILL.md`, `.cursor/skills/caveman/SKILL.md`, and `caveman.skill` are auto-synced by CI after merge. Do not edit them directly.
+> **Note:** `caveman-claptrap/SKILL.md`, `plugins/caveman-claptrap/skills/caveman-claptrap/SKILL.md`, `.cursor/skills/caveman-claptrap/SKILL.md`, and `caveman-claptrap.skill` are auto-synced by CI after merge. Do not edit them directly.
+
+The install surfaces are intentionally namespaced as `caveman-claptrap*` so this fork can coexist with upstream caveman without overwriting its folders or hook assets.
 
 Small focused change > big rewrite. Caveman like simple.
 

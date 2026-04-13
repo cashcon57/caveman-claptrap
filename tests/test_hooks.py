@@ -29,12 +29,12 @@ class HookScriptTests(unittest.TestCase):
             hooks_dir = home / ".claude" / "hooks"
             hooks_dir.mkdir(parents=True)
             (home / ".claude" / "settings.json").write_text("{}\n")
-            (hooks_dir / "caveman-activate.js").write_text("")
-            (hooks_dir / "caveman-mode-tracker.js").write_text("")
+            (hooks_dir / "caveman-claptrap-activate.js").write_text("")
+            (hooks_dir / "caveman-claptrap-mode-tracker.js").write_text("")
 
             self.run_cmd(["bash", "hooks/install.sh"], home)
 
-            statusline = hooks_dir / "caveman-statusline.sh"
+            statusline = hooks_dir / "caveman-claptrap-statusline.sh"
             self.assertTrue(statusline.exists(), "upgrade should install statusline script")
 
             settings = json.loads((home / ".claude" / "settings.json").read_text())
@@ -48,7 +48,7 @@ class HookScriptTests(unittest.TestCase):
             hooks_dir = claude_dir / "hooks"
             hooks_dir.mkdir(parents=True)
 
-            for name in ("caveman-activate.js", "caveman-mode-tracker.js", "caveman-statusline.sh"):
+            for name in ("caveman-claptrap-activate.js", "caveman-claptrap-mode-tracker.js", "caveman-claptrap-statusline.sh"):
                 (hooks_dir / name).write_text("")
 
             settings = {
@@ -58,7 +58,7 @@ class HookScriptTests(unittest.TestCase):
                             "hooks": [
                                 {
                                     "type": "command",
-                                    "command": f'node "{hooks_dir / "caveman-activate.js"}"',
+                                    "command": f'node "{hooks_dir / "caveman-claptrap-activate.js"}"',
                                 }
                             ]
                         }
@@ -68,7 +68,7 @@ class HookScriptTests(unittest.TestCase):
                             "hooks": [
                                 {
                                     "type": "command",
-                                    "command": f'node "{hooks_dir / "caveman-mode-tracker.js"}"',
+                                    "command": f'node "{hooks_dir / "caveman-claptrap-mode-tracker.js"}"',
                                 }
                             ]
                         }
@@ -83,7 +83,7 @@ class HookScriptTests(unittest.TestCase):
 
             updated = json.loads((claude_dir / "settings.json").read_text())
             self.assertIn("statusLine", updated)
-            self.assertIn(str(hooks_dir / "caveman-statusline.sh"), updated["statusLine"]["command"])
+            self.assertIn(str(hooks_dir / "caveman-claptrap-statusline.sh"), updated["statusLine"]["command"])
 
     def test_uninstall_preserves_custom_statusline(self):
         with tempfile.TemporaryDirectory(prefix="caveman-hooks-uninstall-") as tmp:
@@ -92,7 +92,7 @@ class HookScriptTests(unittest.TestCase):
             hooks_dir = claude_dir / "hooks"
             hooks_dir.mkdir(parents=True)
 
-            for name in ("caveman-activate.js", "caveman-mode-tracker.js", "caveman-statusline.sh"):
+            for name in ("caveman-claptrap-activate.js", "caveman-claptrap-mode-tracker.js", "caveman-claptrap-statusline.sh"):
                 (hooks_dir / name).write_text("")
 
             settings = {
@@ -106,7 +106,7 @@ class HookScriptTests(unittest.TestCase):
                             "hooks": [
                                 {
                                     "type": "command",
-                                    "command": f'node "{hooks_dir / "caveman-activate.js"}"',
+                                    "command": f'node "{hooks_dir / "caveman-claptrap-activate.js"}"',
                                 }
                             ]
                         }
@@ -116,7 +116,7 @@ class HookScriptTests(unittest.TestCase):
                             "hooks": [
                                 {
                                     "type": "command",
-                                    "command": f'node "{hooks_dir / "caveman-mode-tracker.js"}"',
+                                    "command": f'node "{hooks_dir / "caveman-claptrap-mode-tracker.js"}"',
                                 }
                             ]
                         }
@@ -151,14 +151,14 @@ class HookScriptTests(unittest.TestCase):
                 + "\n"
             )
 
-            result = self.run_cmd(["node", "hooks/caveman-activate.js"], home)
+            result = self.run_cmd(["node", "hooks/caveman-claptrap-activate.js"], home)
 
             self.assertNotIn("STATUSLINE SETUP NEEDED", result.stdout)
             self.assertIn("stop claptrap", result.stdout)
             self.assertIn("wenyan-ultra", result.stdout)
-            self.assertEqual((claude_dir / ".caveman-active").read_text(), "full")
+            self.assertEqual((claude_dir / ".caveman-claptrap-active").read_text(), "full")
 
-    def test_mode_tracker_records_wenyan_modes(self):
+    def test_mode_tracker_accepts_claptrap_and_legacy_caveman_aliases(self):
         with tempfile.TemporaryDirectory(prefix="caveman-hooks-wenyan-") as tmp:
             home = Path(tmp)
             claude_dir = home / ".claude"
@@ -169,18 +169,18 @@ class HookScriptTests(unittest.TestCase):
             env["USERPROFILE"] = str(home)
 
             subprocess.run(
-                ["node", "hooks/caveman-mode-tracker.js"],
+                ["node", "hooks/caveman-claptrap-mode-tracker.js"],
                 cwd=REPO_ROOT,
                 env=env,
                 text=True,
-                input='{"prompt":"/caveman wenyan"}',
+                input='{"prompt":"/claptrap wenyan"}',
                 capture_output=True,
                 check=True,
             )
-            self.assertEqual((claude_dir / ".caveman-active").read_text(), "wenyan")
+            self.assertEqual((claude_dir / ".caveman-claptrap-active").read_text(), "wenyan")
 
             subprocess.run(
-                ["node", "hooks/caveman-mode-tracker.js"],
+                ["node", "hooks/caveman-claptrap-mode-tracker.js"],
                 cwd=REPO_ROOT,
                 env=env,
                 text=True,
@@ -188,7 +188,7 @@ class HookScriptTests(unittest.TestCase):
                 capture_output=True,
                 check=True,
             )
-            self.assertEqual((claude_dir / ".caveman-active").read_text(), "wenyan-ultra")
+            self.assertEqual((claude_dir / ".caveman-claptrap-active").read_text(), "wenyan-ultra")
 
 
 if __name__ == "__main__":
